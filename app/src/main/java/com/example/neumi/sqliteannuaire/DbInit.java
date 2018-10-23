@@ -5,14 +5,14 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class DbInit extends SQLiteOpenHelper {
-    public DbInit(Context ctxt, String dbName, int version) {
-        super(ctxt, dbName, null, version);
+    public DbInit(Context ctxt) {
+        super(ctxt, "annuaire", null, 1);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String sql = "CREATE TABLE contacts (" + " id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL" +
-                ", name TEXT NOT NULL" + ", tel TEXT" + ")";
+        String sql = "CREATE TABLE contacts ( id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL" +
+                ", name TEXT NOT NULL, tel TEXT)";
         db.execSQL(sql);
     }
 

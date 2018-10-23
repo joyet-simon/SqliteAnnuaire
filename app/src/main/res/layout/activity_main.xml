@@ -1,105 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="10dp"
-    android:orientation="vertical"
     android:gravity="center_horizontal"
-    tools:context=".MainActivity"
-    >
-    <TextView android:text="Annuaire"
+    android:orientation="vertical"
+    android:padding="10dp"
+    tools:context=".MainActivity">
+
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="24sp"
         android:gravity="center_horizontal"
-        />
+        android:text="@string/annuaire"
+        android:textSize="24sp" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_horizontal"
         android:layout_marginTop="30dp"
-        >
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
         <EditText
             android:id="@+id/etSearch"
             android:layout_width="200dp"
-            android:layout_height="wrap_content"
-            />
+            android:layout_height="wrap_content" />
+
         <Button
             android:id="@+id/btSearch"
+            style="@android:style/Widget.Button.Inset"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:text="Chercher"
             android:onClick="search"
-            />
+            android:text="@string/chercher" />
     </LinearLayout>
+
     <View
         android:layout_width="fill_parent"
         android:layout_height="5dp"
-        android:background="#c0c0c0"
         android:layout_marginTop="40dp"
-        />
+        android:background="#c0c0c0" />
+
     <TextView
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:text="ID :"
         android:layout_marginTop="40dp"
-        />
+        android:text="@string/id" />
+
     <EditText
         android:id="@+id/etId"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:inputType="none"
-        />
+        android:enabled="false"
+        android:inputType="none" />
+
     <TextView
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:text="Nom :"
-        />
+        android:text="@string/nom" />
+
     <EditText
         android:id="@+id/etName"
         android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        />
+        android:layout_height="wrap_content" />
+
     <TextView
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:text="Tel :"
-        />
+        android:text="@string/tel" />
+
     <EditText
         android:id="@+id/etTel"
         android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        />
+        android:layout_height="wrap_content" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_marginTop="20dp"
         android:gravity="center_horizontal"
-        >
+        android:orientation="horizontal">
+
         <Button
             android:id="@+id/btNew"
+            style="@android:style/Widget.Button.Inset"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:text="Vider"
             android:onClick="clear"
-            />
+            android:text="@string/vider" />
+
         <Button
             android:id="@+id/btDelete"
-            android:layout_width="120dp"
+            style="@android:style/Widget.Button.Inset"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Supprimer"
             android:onClick="delete"
-            />
+            android:text="@string/supprimer" />
+
         <Button
             android:id="@+id/btInsert"
-            android:layout_width="140dp"
+            style="@android:style/Widget.Button.Inset"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Enregistrer"
             android:onClick="save"
-            />
+            android:text="@string/enregistrer" />
     </LinearLayout>
 </LinearLayout>

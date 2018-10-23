@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">Sqlite Annuaire</string>
+    <string name="annuaire">Annuaire</string>
+    <string name="chercher">Chercher</string>
+    <string name="id">ID :</string>
+    <string name="nom">Nom :</string>
+    <string name="tel">Tel :</string>
+    <string name="vider">Vider</string>
+    <string name="supprimer">Supprimer</string>
+    <string name="enregistrer">Enregistrer</string>
 </resources>

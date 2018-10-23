@@ -31,7 +31,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void save(View view) {
-        insert();
+        if (etId.getText().toString().isEmpty()) {
+            insert();
+        } else {
+            update();
+        }
+
+    }
+
+    private void update() {
+        ContentValues values = new ContentValues();
+        values.put("name", etName.getText().toString());
+        values.put("tel", etTel.getText().toString());
+        int id = Integer.parseInt(etId.getText().toString());
+        String clause = "id = '" + id + "'";
+        db.update("contacts", values, clause, null);
     }
 
     private void insert() {
@@ -42,15 +56,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void delete(View view) {
-
-
+        int id = Integer.parseInt(etId.getText().toString());
+        String clause = "id = '" + id + "'";
+        db.delete("contacts", clause, null);
+        effacer();
     }
 
     public void clear(View view) {
-        etSearch.setText("");
-        etId.setText("");
-        etName.setText("");
-        etTel.setText("");
+        effacer();
+    }
+
+    private void effacer() {
+        etSearch.getText().clear();
+        etId.getText().clear();
+        etName.getText().clear();
+        etTel.getText().clear();
     }
 
     public void search(View view) {

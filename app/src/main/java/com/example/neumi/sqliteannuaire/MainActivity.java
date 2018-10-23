@@ -1,15 +1,20 @@
 package com.example.neumi.sqliteannuaire;
 
 import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+import static android.content.DialogInterface.BUTTON_NEGATIVE;
+import static android.content.DialogInterface.BUTTON_POSITIVE;
+
+public class MainActivity extends AppCompatActivity implements AlertDialog.OnClickListener {
 
     EditText etSearch;
     EditText etTel;
@@ -36,15 +41,13 @@ public class MainActivity extends AppCompatActivity {
         } else {
             update();
         }
-
     }
 
     private void update() {
         ContentValues values = new ContentValues();
         values.put("name", etName.getText().toString());
         values.put("tel", etTel.getText().toString());
-        int id = Integer.parseInt(etId.getText().toString());
-        String clause = "id = '" + id + "'";
+        String clause = "id = " + etId.getText().toString();
         db.update("contacts", values, clause, null);
     }
 
@@ -56,22 +59,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void delete(View view) {
-        int id = Integer.parseInt(etId.getText().toString());
-        String clause = "id = '" + id + "'";
-        db.delete("contacts", clause, null);
-        effacer();
+        createAndShowDialog();
     }
 
     public void clear(View view) {
-        effacer();
-    }
-
-    private void effacer() {
         etSearch.getText().clear();
         etId.getText().clear();
         etName.getText().clear();
         etTel.getText().clear();
     }
+
 
     public void search(View view) {
         String[] colonnes = {"id", "name", "tel"};
@@ -88,5 +85,30 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, "Nom introuvable", Toast.LENGTH_LONG).show();
         }
 
+    }
+
+    private void createAndShowDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Suppression");
+        builder.setMessage("Confirmez vous la suppression?");
+        builder.setPositiveButton("Oui", this);
+        builder.setNegativeButton("Non", this);
+        builder.create().show();
+    }
+
+    @Override
+    public void onClick(DialogInterface dialog, int which) {
+        switch (which) {
+            case BUTTON_NEGATIVE:
+                dialog.dismiss();
+                break;
+            case BUTTON_POSITIVE:
+                String clause = "id = " + etId.getText().toString();
+                db.delete("contacts", clause, null);
+                clear(null);
+                Toast.makeText(this, "suppression", Toast.LENGTH_LONG).show();
+                dialog.dismiss();
+                break;
+        }
     }
 }
